@@ -11,9 +11,17 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Set Git Config
+        run: |
+          git config --global user.name "Dipak-Dhariyaparmar"
+          git config --global user.email "dipakdhariyaparmar@gmail.com"
+
       - name: Generate Commit
         run: |
+          echo "$(date) - Update file1" >> file1.txt
+          echo "$(date) - Update file2" >> file2.txt
+          echo "$(date) - Update file3" >> file3.txt
           echo "$(date) - Automated commit" >> log.txt
-          git add log.txt
-          git commit -m "Automated commit"
+          git add file1.txt file2.txt file3.txt log.txt
+          git commit -m "Automated daily update"
           git push
